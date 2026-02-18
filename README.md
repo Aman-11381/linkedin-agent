@@ -58,16 +58,22 @@ IMAGE_DEPLOYMENT=dall-e-3
 #### Generate a Post
 
 ```bash
-agent post --topic "CQRS Pattern" --audience "mid-level developers" --tone "educational"
+# Topic only
+agent post --topic "Why you don't need microservices"
+
+# With rough notes to guide the post
+agent post --topic "CQRS" --content "separate read/write models, eventual consistency tradeoff, overkill for simple CRUD"
+
+# Read directional content from a file
+agent post --topic "CQRS" --file notes.txt
 ```
 
 Options:
 | Flag | Short | Default | Description |
 |------|-------|---------|-------------|
 | `--topic` | `-t` | *(required)* | Topic of the post |
-| `--audience` | `-a` | `software engineers and tech professionals` | Target audience |
-| `--tone` | | `educational and engaging` | Tone of the post |
-| `--key-points` | `-k` | | Key points to cover |
+| `--content` | `-c` | | Rough notes, bullets, or draft thoughts to guide the post |
+| `--file` | `-f` | | Read directional content from a file |
 
 #### Generate an Image
 
