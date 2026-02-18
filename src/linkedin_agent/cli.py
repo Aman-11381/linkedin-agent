@@ -34,29 +34,28 @@ def _copy_to_clipboard(text: str) -> None:
 @app.command()
 def post(
     topic: str = typer.Option(..., "--topic", "-t", help="Topic of the post"),
-    audience: str = typer.Option(
-        "software engineers and tech professionals",
-        "--audience",
-        "-a",
-        help="Target audience",
+    directional_content: Optional[str] = typer.Option(
+        None,
+        "--content",
+        "-c",
+        help="Rough notes, bullets, or draft thoughts to guide the post",
     ),
-    tone: str = typer.Option(
-        "educational and engaging", "--tone", help="Tone of the post"
-    ),
-    key_points: Optional[str] = typer.Option(
-        None, "--key-points", "-k", help="Key points to cover (optional)"
+    file: Optional[str] = typer.Option(
+        None, "--file", "-f", help="Read directional content from a file"
     ),
 ) -> None:
     """Generate a LinkedIn post from a template."""
     config.validate_llm()
 
+    content = directional_content or ""
+    if file:
+        content = open(file, encoding="utf-8").read()
+
     with console.status("Generating post…"):
         prompt = templates.render(
             "post.txt",
             topic=topic,
-            audience=audience,
-            tone=tone,
-            key_points=key_points or "",
+            directional_content=content,
         )
         result = generate_text(prompt)
 
