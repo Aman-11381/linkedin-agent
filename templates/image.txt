@@ -1,0 +1,15 @@
+Generate a professional, visually appealing image for a LinkedIn post about the following topic:
+Topic: {{ topic }}
+
+Style: {{ style | default("clean, modern, professional illustration") }}
+
+{% if description %}
+Additional details: {{ description }}
+{% endif %}
+
+Requirements:
+- The image should be suitable for a LinkedIn post (1200x627 or square)
+- Use a clean, professional color palette
+- Include minimal text if any — the image should complement the post, not repeat it
+- Avoid stock-photo aesthetics; prefer diagrams, illustrations, or conceptual visuals
+- Make it visually striking enough to stop someone scrolling

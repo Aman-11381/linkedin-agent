@@ -1,0 +1,16 @@
+# Environment
+.env
+
+# Output (keep directory structure via .gitkeep)
+output/*
+!output/.gitkeep
+output/images/*
+!output/images/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.venv/
